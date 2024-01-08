@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Article</title>
+</head>
+<body>
+
+<h1>[[${article.title}]]</h1>
+<p>작성자: [[${article.author}]]</p>
+    <a th:href="@{'/article/'+${article.id}+'/update'}">
+        <button type="button">수정하기</button>
+    </a>
+    <a th:href="@{'/article/'+${article.id}+'/delete'}">
+        <button type="button">삭제하기</button>
+    </a>
+<hr>
+<p> [[${article.content}]]
+<hr>
+
+<!-- 게시글 리스트로 돌아가기-->
+<a th:href="@{'/boards/' + ${boardId}}">Back</a>
+</body>
+</html>
