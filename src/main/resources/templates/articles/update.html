@@ -5,7 +5,8 @@
     <title>Update Article</title>
 </head>
 <body>
-<form th:action="@{'/article/'+${articleId}}" method="post">
+<h1>게시글 수정하기</h1>
+<form th:action="@{/article/{articleId}(articleId=${article.id})}" method="post">
     <!-- 제목 입력 -->
     <div class="mb-3">
         <label>제목:
@@ -40,6 +41,6 @@
     <button type="submit">게시글 수정</button>
 </form>
 <!-- 수정 취소하고 뒤로가기 -->
-<a th:href="@{'/article/'+ ${articleId}}">Back</a>
+<a th:href="@{/article/{articleId}(articleId=${article.id})}">Back</a>
 </body>
 </html>

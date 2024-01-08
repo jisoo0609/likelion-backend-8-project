@@ -8,17 +8,19 @@
 
 <h1>[[${article.title}]]</h1>
 <p>작성자: [[${article.author}]]</p>
-    <a th:href="@{'/article/'+${article.id}+'/update'}">
+    <a th:href="@{/article/{articleId}/update(articleId=${article.id})}">
         <button type="button">수정하기</button>
     </a>
-    <a th:href="@{'/article/'+${article.id}+'/delete'}">
+    <a th:href="@{/article/{articleId}/delete(articleId=${article.id})}">
         <button type="button">삭제하기</button>
     </a>
 <hr>
 <p> [[${article.content}]]
 <hr>
 
+<!-- 댓글 -->
+
 <!-- 게시글 리스트로 돌아가기-->
-<a th:href="@{'/boards/' + ${boardId}}">Back</a>
+<a th:href="@{/boards/{boardId}(boardId=${boardId})}">Back</a>
 </body>
 </html>

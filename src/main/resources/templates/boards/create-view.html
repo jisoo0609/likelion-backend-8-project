@@ -11,7 +11,7 @@
 </head>
 <body>
 <h1>게시글 작성하기</h1>
-<form th:action="@{'/boards/' + ${boardId} + '/article'}" method="post">
+<form th:action="@{/boards/{boardId}/article(boardId=${board.id})}" method="post">
     <!-- 제목 입력 -->
     <div class="mb-3">
         <label>제목:

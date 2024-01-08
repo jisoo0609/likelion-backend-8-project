@@ -8,7 +8,7 @@
 <h1 th:text="${board.name}"></h1>
 
 <!-- 게시글 생성 버튼 -->
-<a th:href="@{'/boards/' + ${board.id} + '/article'}">
+<a th:href="@{/boards/{boardId}/article(boardId=${board.id})}">
     <button>게시글 작성하기</button>
 </a>
 
@@ -19,7 +19,7 @@
 
 <!-- 게시글이 있는 경우 -->
 <div th:unless="${board.articles.isEmpty()}" th:each="article : ${board.articles}">
-    <a th:href="@{'/article/' + ${article.id}}">[[${article.title}]]</a>
+    <a th:href="@{/article/{articleId}(articleId=${article.id})}">[[${article.title}]]</a>
 </div>
 
 <hr>
