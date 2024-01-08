@@ -6,10 +6,9 @@
 </head>
 <body>
 <h1>Board List</h1>
-<ul>
-    <li th:each="board : ${boards}">
-        <a th:href="@{/boards/{boardId}(boardId=${board.id})}" th:text="${board.name}"></a>
-    </li>
-</ul>
+<hr>
+<div th:each="board : ${boards}">
+    <h2><a th:href="@{/boards/{boardId}(boardId=${board.id})}">[[${board.name}]]</a></h2>
+</div>
 </body>
 </html>
