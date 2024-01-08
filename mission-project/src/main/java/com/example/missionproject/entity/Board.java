@@ -1,4 +1,4 @@
-package com.example.missionproject.Board.entity;
+package com.example.missionproject.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import java.util.List;
 
+// 게시글
 @Entity
 @Getter
 @Setter

@@ -1,4 +1,4 @@
-package com.example.missionproject.Board.dto;
+package com.example.missionproject.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,5 +7,5 @@ import lombok.Setter;
 @Setter
 public class BoardDto {
     private Long id;
-    private String name;
+    private String name; // 게시판 이름
 }

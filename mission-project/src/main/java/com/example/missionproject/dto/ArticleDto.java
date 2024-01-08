@@ -1,4 +1,4 @@
-package com.example.missionproject.Board.dto;
+package com.example.missionproject.dto;
 
 public class ArticleDto {
     private Long id;
