@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Article</title>
+    <style>
+        .mb-3 {
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+<h1>게시글 작성하기</h1>
+<form th:action="@{'/boards/' + ${boardId} + '/article'}" method="post">
+    <!-- 제목 입력 -->
+    <div class="mb-3">
+        <label>제목:
+            <input type="text" name="title" placeholder="게시글 제목">
+        </label>
+    </div>
+
+    <!-- 게시판 선택 드롭다운 -->
+    <div class="mb-3">
+        <label for="boardId">게시판 위치:</label>
+        <select name="boardId" id="boardId">
+            <option th:each="boardItem : ${board}" th:value="${boardItem.id}" th:text="${boardItem.name}"></option>
+        </select>
+    </div>
+
+    <!-- 내용 입력 -->
+    <div class="mb-3">
+        <label> 내용:
+            <textarea name="content" placeholder="내용을 입력하세요."></textarea>
+        </label>
+    </div>
+
+    <!-- 작성자 입력 -->
+    <div class="mb-3">
+        <label>작성자:
+            <input type="text" name="author">
+        </label>
+    </div>
+
+    <!-- 비밀번호 입력 -->
+    <div class="mb-3">
+        <label>비밀번호:
+            <input type="password" name="password">
+        </label>
+    </div>
+
+    <!-- 제출 버튼 -->
+    <button type="submit">게시글 작성</button>
+</form>
+</body>
+</html>
