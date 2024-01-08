@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+    <title>Update Article</title>
+</head>
+<body>
+<form th:action="@{'/article/'+${articleId}}" method="post">
+    <!-- 제목 입력 -->
+    <div class="mb-3">
+        <label>제목:
+            <input type="text" name="title" th:value="${article.title}">
+        </label>
+    </div>
+
+    <!-- 내용 입력 -->
+    <div class="mb-3">
+        <label> 내용:
+            <textarea name="content" th:value="${article.content}"></textarea>
+        </label>
+    </div>
+
+    <!-- 작성자 입력 -->
+    <div class="mb-3">
+        <label>작성자:
+            <input type="text" name="author" th:value="${article.author}">
+        </label>
+    </div>
+
+    <!-- 비밀번호 입력 -->
+    <div class="mb-3">
+        <label>비밀번호:
+            <input type="password" name="password" th:value="${article.password}">
+        </label>
+        <!-- 비밀번호가 틀린 경우 -->
+        <span th:if="${param.error}" style="color: red;">비밀번호가 틀렸습니다.</span>
+    </div>
+
+    <!-- 제출 버튼 -->
+    <button type="submit">게시글 수정</button>
+</form>
+<!-- 수정 취소하고 뒤로가기 -->
+<a th:href="@{'/article/'+ ${articleId}}">Back</a>
+</body>
+</html>
