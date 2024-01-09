@@ -60,4 +60,34 @@ public class CommentController {
             return String.format("redirect:/article/%d/comment/%d/delete?error=true", articleId, id);
         }
     }
+
+    // 댓글 수정 페이지로 이동
+    @GetMapping("/{articleId}/comment/{commentId}/update")
+    public String updateView(@PathVariable("articleId") Long articleId,
+                             @PathVariable("commentId") Long id,
+                             Model model) {
+        // 댓글 읽어옴
+        Comment comment = commentService.readComment(id);
+        Article article = articleService.readArticle(articleId);
+
+        model.addAttribute("comment", comment);
+        model.addAttribute("article", article);
+        return "comments/update";
+    }
+
+    @PostMapping("/{articleId}/comment/{commentId}/update")
+    public String updateComment(@PathVariable("articleId") Long articleId,
+                                @PathVariable("commentId") Long id,
+                                @RequestParam("name") String name,
+                                @RequestParam("password") String password,
+                                @RequestParam("content") String content) {
+        // 비밀번호가 일치하는 경우
+        if (commentService.isPasswordCorrect(id, password)) {
+            commentService.update(id, name, password, content);
+            return String.format("redirect:/article/%d", articleId);
+        } else {
+            // 비밀번호가 일치하지 않는 경우
+            return String.format("redirect:/article/%d/comment/%d/update?error=true", articleId, id);
+        }
+    }
 }

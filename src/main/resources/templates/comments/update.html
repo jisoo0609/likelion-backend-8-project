@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Comment Update</title>
+</head>
+<body>
+<h1>댓글 수정하기</h1>
+<form th:action="@{/article/{articleId}/comment/{commentId}/update(articleId=${comment.article.id}, commentId=${comment.id})}" method="post">
+    <!-- 작성자 입력 -->
+    <div>
+        <label>작성자:
+            <input type="text" name="name" th:value="${comment.name}">
+        </label>
+    </div>
+
+    <!-- 비밀번호 입력 -->
+    <div>
+        <label>비밀번호:
+            <input type="password" name="password" th:value="${comment.password}">
+        </label>
+        <!-- 비밀번호가 틀린 경우 -->
+        <span th:if="${param.error}" style="color: red;">비밀번호가 틀렸습니다.</span>
+    </div>
+
+    <!-- 내용 입력 -->
+    <div>
+        <label> 내용:
+            <textarea name="content" th:value="${comment.content}"></textarea>
+        </label>
+    </div>
+
+    <!-- 제출 버튼 -->
+    <button type="submit">댓글 수정</button>
+</form>
+<!-- 수정 취소하고 뒤로가기 -->
+<a th:href="@{/article/{articleId}(articleId=${comment.article.id})}">Back</a>
+</body>
+</html>

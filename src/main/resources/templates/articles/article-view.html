@@ -29,6 +29,9 @@
 
     <div th:unless="${article.comments.isEmpty()}" th:each="comment : ${article.comments}">
         [[${comment.content}]]
+        <a th:href="@{/article/{articleId}/comment/{commentId}/update(articleId=${article.id}, commentId=${comment.id})}">
+            <button type="button">댓글 수정하기</button>
+        </a>
         <a th:href="@{/article/{articleId}/comment/{commentId}/delete(articleId=${article.id}, commentId=${comment.id})}">
             <button type="button">댓글 삭제하기</button>
         </a>

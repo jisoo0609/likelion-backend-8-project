@@ -58,4 +58,16 @@ public class CommentService {
     public void deleteComment(Long id) {
         commentRepository.deleteById(id);
     }
+
+    // 댓글 수정하기
+    public void update(Long id, String name, String password, String content) {
+        // 비밀번호가 일치하는 경우 대상 데이터 찾음
+        Comment target = readComment(id);
+        // 댓글의 내옹을 전달받은 내용으로 갱신
+        target.setName(name);
+        target.setPassword(password);
+        target.setContent(content);
+        // save
+        commentRepository.save(target);
+    }
 }
