@@ -2,11 +2,14 @@ package com.example.missionproject.service;
 
 import com.example.missionproject.entity.Article;
 import com.example.missionproject.entity.Board;
+import com.example.missionproject.entity.Hashtag;
 import com.example.missionproject.repository.ArticleRepository;
 import com.example.missionproject.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,7 +36,9 @@ public class BoardService {
             String author,
             String password,
             // 게시판의 PK 가져옴
-            Long boardId) {
+            Long boardId
+//            String hashtags
+            ) {
         // 주어진 정보로 새로운 Article 객체 생성
         Article article = new Article();
         article.setTitle(title);
@@ -41,11 +46,42 @@ public class BoardService {
         article.setAuthor(author);
         article.setPassword(password);
 
+//        // 해시태그 추가
+//        List<Hashtag> hashtagList = new ArrayList<>();
+//
+//        String[] hashtagArray = hashtags.split("\\s*,\\s*");
+//
+//        for (String tag : hashtagArray) {
+//            Hashtag hashtag = new Hashtag();
+//            // 해시태그에 # 자동 추가
+//            hashtag.setHashtag("#" + tag);
+//            hashtagList.add(hashtag);
+//        }
+//
+//        article.setHashtags(hashtagList);
+
         // 게시판 이름을 찾는다
         Optional<Board> optionalBoard = boardRepository.findById(boardId);
         // 게시글이 어느 게시판에 작성되는지 게시판을 할당한다
         article.setBoard(optionalBoard.orElse(null));
         // save
         articleRepository.save(article);
+    }
+
+    // 검색 기능 추가
+    public List<Article> searchArticles(Long boardId, String type, String keyword) {
+        Optional<Board> optionalBoard = boardRepository.findById(boardId);
+        if (optionalBoard.isPresent()) {
+            Board board = optionalBoard.get();
+
+            if ("title".equals(type)) {
+                // 제목으로 검색
+                return articleRepository.findByBoardAndTitleContainingIgnoreCase(board, keyword);
+            } else if ("content".equals(type)) {
+                // 내용으로 검색
+                return articleRepository.findByBoardAndContentContainingIgnoreCase(board, keyword);
+            }
+        }
+        return Collections.emptyList();
     }
 }

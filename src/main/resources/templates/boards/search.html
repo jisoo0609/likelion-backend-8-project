@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Result</title>
+</head>
+<body>
+    <h1>검색 결과</h1>
+    <hr>
+    <div th:if="${searchResult.isEmpty()}">
+        <h2>검색 결과가 없습니다.</h2>
+    </div>
+
+    <div th:unless="${searchResult.isEmpty()}" th:each="result : ${searchResult}">
+        <a th:href="@{/article/{articleId}(articleId=${result.id})}">
+            [[${result.title}]]
+        </a>
+    </div>
+
+    <hr>
+    <!-- 게시글 리스트로 돌아가는 링크 -->
+    <a th:href="@{/boards/{boardId}(boardId=${boardId})}">Back</a>
+</body>
+</html>
