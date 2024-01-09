@@ -1,6 +1,7 @@
 package com.example.missionproject.controller;
 
 import com.example.missionproject.entity.Article;
+import com.example.missionproject.entity.Comment;
 import com.example.missionproject.service.ArticleService;
 import com.example.missionproject.service.CommentService;
 import lombok.RequiredArgsConstructor;
@@ -32,5 +33,31 @@ public class CommentController {
                                 @PathVariable("articleId") Long articleId) {
         commentService.createComment(name, password, content, articleId);
         return String.format("redirect:/article/%d", articleId);
+    }
+
+    // 댓글 삭제 페이지로 이동
+    @GetMapping("/{articleId}/comment/{commentId}/delete")
+    public String deleteView(@PathVariable("articleId") Long articleId,
+                             @PathVariable("commentId") Long id,
+                             Model model) {
+        // 댓글 읽어옴
+        Comment comment = commentService.readComment(id);
+        Article article = articleService.readArticle(articleId);
+
+        model.addAttribute("comment", comment);
+        model.addAttribute("article", article);
+        return "comments/delete";
+    }
+
+    @PostMapping("/{articleId}/comment/{commentId}/delete")
+    public String deleteComment(@PathVariable("articleId") Long articleId,
+                                @PathVariable("commentId") Long id,
+                                @RequestParam String password) {
+        if (commentService.isPasswordCorrect(id, password)) {
+            commentService.deleteComment(id);
+            return String.format("redirect:/article/%d", articleId);
+        } else {
+            return String.format("redirect:/article/%d/comment/%d/delete?error=true", articleId, id);
+        }
     }
 }

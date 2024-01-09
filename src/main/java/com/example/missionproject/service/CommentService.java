@@ -37,7 +37,13 @@ public class CommentService {
         return commentRepository.findAll();
     }
 
-    // 댓글 수정하기 위해 비밀번호 확인하는 메서드
+    // 상세 댓글 보여줌
+    public Comment readComment(Long id) {
+        Optional <Comment> optionalComment = commentRepository.findById(id);
+        return optionalComment.orElse(null);
+    }
+
+    // 댓글 삭제하기 위해 비밀번호 확인하는 메서드
     public boolean isPasswordCorrect(Long id, String password) {
         Optional<Comment> optionalComment = commentRepository.findById(id);
         // 가져온 댓글의 password와 입력받은 password가 일치하는지 확인

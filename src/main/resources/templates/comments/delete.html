@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Comment</title>
+</head>
+<body>
+    <form th:action="@{/article/{articleId}/comment/{commentID}/delete(articleId=${article.id}, commentID=${comment.id})}" method="post">
+        <h1>정말 댓글을 삭제하시겠습니까?</h1>
+        <h2>삭제된 댓글은 복구할 수 없습니다.</h2>
+
+        <div class="mb-3">
+            <label>비밀번호를 입력하세요:
+                <input type="password" name="password">
+            </label>
+            <!-- 비밀번호가 틀린 경우 -->
+            <span th:if="${param.error}" style="color: red;">비밀번호가 틀렸습니다.</span>
+        </div>
+
+        <button type="submit">YES</button>
+        <a th:href="@{/article/{articleId}(articleId=${article.id})}">
+            <button type="button">NO</button>
+        </a>
+    </form>
+</body>
+</html>
