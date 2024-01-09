@@ -37,20 +37,26 @@ public class BoardController {
     @GetMapping("/{boardId}/article")
     public String createView(@PathVariable("boardId")Long id, Model model) {
         Board board = boardService.getBoardById(id);
+
+        // 게시판 전체 이름 가져옴
+        List<Board> boards = boardService.readAllBoard();
+
+        model.addAttribute("boards", boards);
         model.addAttribute("board", board);
         model.addAttribute("boardId", id);
         return "boards/create-view";
     }
 
+    // 게시글 생성하기
     @PostMapping("/{boardId}/article")
     public String create(@RequestParam("title") String title,
                          @RequestParam("content") String content,
                          @RequestParam("author") String author,
                          @RequestParam("password") String password,
-                         @PathVariable("boardId") Long boardId
-//                         @RequestParam("hashtags") String hashtags
+                         @RequestParam("boardId") Long boardId,
+                         @RequestParam("hashtags") String hashtags
     ) {
-        boardService.create(title, content, author, password, boardId);
+        boardService.create(title, content, author, password, boardId,hashtags);
         return String.format("redirect:/boards/%d", boardId);
     }
 

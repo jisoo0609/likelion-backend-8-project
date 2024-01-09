@@ -15,7 +15,17 @@
         <button type="button">삭제하기</button>
     </a>
 <hr>
-<p> [[${article.content}]]
+<p> [[${article.content}]]</p>
+<br>
+
+<!-- 해시태그 보여주기 -->
+<div th:if="${article.hashtags.isEmpty()}">
+    <p>태그가 없습니다.</p>
+</div>
+
+<div th:unless="${article.hashtags.isEmpty()}" th:each="tag : ${article.hashtags}">
+    [[${tag.hashtag}]]
+</div>
 <hr>
 
 <!-- 댓글 보여주기 -->
