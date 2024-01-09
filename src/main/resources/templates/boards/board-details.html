@@ -39,7 +39,7 @@
 </div>
 
 <!-- 게시글이 있는 경우 -->
-<div th:unless="${board.articles.isEmpty()}" th:each="article : ${board.articles}">
+<div th:unless="${board.articles.isEmpty()}" th:each="article : ${sortedArticles}">
     <a th:href="@{/article/{articleId}(articleId=${article.id})}">[[${article.title}]]</a>
 </div>
 

@@ -9,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
@@ -30,7 +32,13 @@ public class BoardController {
     @GetMapping("/{boardId}")
     public String boardDetails(@PathVariable("boardId") Long id, Model model) {
         Board board = boardService.getBoardById(id);
+
+        // 정렬된 게시글 리스트를 생성
+        List<Article> sortedArticles = board.getArticles().stream()
+                .sorted(Comparator.comparing(Article::getId).reversed())
+                .collect(Collectors.toList());
         model.addAttribute("board", board);
+        model.addAttribute("sortedArticles", sortedArticles);
         return "boards/board-details";
     }
 

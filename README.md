@@ -17,9 +17,9 @@
 ---
 
 ## Board - Article
-![board-Article](image/Article%20-%20Comment.png)
+![boardArticle](image/Article%20-%20Comment.png)
 ## Article - Comment
-![Article-Board](image/Board%20-%20Article.png)
+![ArticleBoard](image/Board%20-%20Article.png)
 
 ---
 
