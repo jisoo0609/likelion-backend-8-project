@@ -44,7 +44,7 @@ public class ArticleService {
     }
 
     // 게시글 삭제하기
-    public void delete(Long id) {
+    public void deleteArticle(Long id) {
         articleRepository.deleteById(id);
     }
 }

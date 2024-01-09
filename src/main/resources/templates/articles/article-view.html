@@ -18,8 +18,22 @@
 <p> [[${article.content}]]
 <hr>
 
-<!-- 댓글 -->
+<!-- 댓글 보여주기 -->
+<h3>댓글</h3>
+    <a th:href="@{/article/{articleId}/comment(articleId=${article.id})}">
+        <button type="button">댓글 작성하기</button>
+    </a>
+    <div th:if="${article.comments.isEmpty()}">
+        <p>댓글이 없습니다.</p>
+    </div>
 
+    <div th:unless="${article.comments.isEmpty()}" th:each="comment : ${article.comments}">
+        [[${comment.content}]]
+        <a th:href="@{/article/{articleId}/comment/{commentId}/delete(articleId=${article.id})(commentId=${comment.id})}">
+            <button type="button">댓글 수정하기</button>
+        </a>
+    </div>
+<hr>
 <!-- 게시글 리스트로 돌아가기-->
 <a th:href="@{/boards/{boardId}(boardId=${boardId})}">Back</a>
 </body>

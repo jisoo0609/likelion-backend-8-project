@@ -2,7 +2,6 @@ package com.example.missionproject.controller;
 
 
 import com.example.missionproject.entity.Article;
-import com.example.missionproject.repository.ArticleRepository;
 import com.example.missionproject.service.ArticleService;
 
 import lombok.RequiredArgsConstructor;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("article")
 public class ArticleController {
     private final ArticleService articleService;
-    private final ArticleRepository articleRepository;
 
     // 게시글 상세보기
     @GetMapping("{articleId}")
@@ -66,7 +64,7 @@ public class ArticleController {
                                 @RequestParam String password,
                                 @RequestParam Long boardId) {
         if (articleService.isPasswordCorrect(id, password)) {
-            articleService.delete(id);
+            articleService.deleteArticle(id);
             return String.format("redirect:/boards/%d", boardId);
         } else {
             return String.format("redirect:/article/%d/delete?error=true", id);

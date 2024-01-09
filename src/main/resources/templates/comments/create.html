@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Comment</title>
+</head>
+<body>
+<h1>댓글 작성하기</h1>
+<form th:action="@{/article/{articleId}/comment(articleId=${article.id})}" method="post">
+    <!--  작성자 입력  -->
+    <div>
+        <label>작성자:
+            <input type="text" name="name" placeholder="작성자(익명)">
+        </label>
+    </div>
+
+    <!--  비밀번호 입력  -->
+    <div>
+        <label>비밀번호:
+            <input type="password" name="password">
+        </label>
+    </div>
+
+    <!--  댓글 입력  -->
+    <div>
+        <label>내용:
+            <textarea name="content" placeholder="내용을 입력하세요"></textarea>
+        </label>
+    </div>
+
+    <!--  제출 버튼  -->
+    <button type="submit">댓글 작성</button>
+</form>
+</body>
+</html>
