@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -55,7 +54,17 @@ public class BoardController {
         return String.format("redirect:/boards/%d", boardId);
     }
 
-    // 게시글 검색하기
+    // 게시판 전체에서 게시글 검색하기
+    @GetMapping("/search")
+    public String searchAll(@RequestParam("type") String type,
+                            @RequestParam("keyword") String keyword,
+                            Model model) {
+        List <Article> searchArticle = boardService.searchAllBoards(type, keyword);
+        model.addAttribute("searchResult", searchArticle);
+        return "boards/search-all";
+    }
+
+    // 게시판 내 게시글 검색하기
     @GetMapping("/{boardId}/search")
     public String searchPage(@PathVariable("boardId") Long id,
                              @RequestParam("type") String type,

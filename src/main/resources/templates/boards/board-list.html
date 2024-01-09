@@ -7,6 +7,26 @@
 <body>
 <h1>Board List</h1>
 <hr>
+
+<!-- 서치 기능 추가 -->
+<form action="/boards/search" method="get" id="search-input" name="search">
+    <label>
+        <select name="type" class="type-box">
+            <option value="title">제목</option>
+            <option value="content">내용</option>
+        </select>
+    </label>
+    <div class="search-input">
+        <input class="inputId" type="text" name="keyword" placeholder="검색어 입력" th:value="${param.keyword}">
+    </div>
+    <div class="search-btn">
+        <a href="/boards/search">
+            <input class="submitBtn" type="submit" value="검색하기">
+        </a>
+    </div>
+</form>
+<hr>
+
 <div th:each="board : ${boards}">
     <h2><a th:href="@{/boards/{boardId}(boardId=${board.id})}">[[${board.name}]]</a></h2>
 </div>

@@ -68,7 +68,17 @@ public class BoardService {
         articleRepository.save(article);
     }
 
-    // 검색 기능 추가
+    // 게시판 전체 검색 기능
+    public List<Article> searchAllBoards(String type, String keyword) {
+        if ("title".equals(type)) {
+            return articleRepository.findByTitleContaining(keyword);
+        } else if ("content".equals(type)) {
+            return articleRepository.findByContentContaining(keyword);
+        }
+        return Collections.emptyList();
+    }
+
+    // 각 게시판 별 검색 기능 추가
     public List<Article> searchArticles(Long boardId, String type, String keyword) {
         Optional<Board> optionalBoard = boardRepository.findById(boardId);
         if (optionalBoard.isPresent()) {
