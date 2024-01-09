@@ -17,7 +17,7 @@
     <!-- 비밀번호 입력 -->
     <div>
         <label>비밀번호:
-            <input type="password" name="password" th:value="${comment.password}">
+            <input type="password" name="password">
         </label>
         <!-- 비밀번호가 틀린 경우 -->
         <span th:if="${param.error}" style="color: red;">비밀번호가 틀렸습니다.</span>
@@ -26,7 +26,7 @@
     <!-- 내용 입력 -->
     <div>
         <label> 내용:
-            <textarea name="content" th:value="${comment.content}"></textarea>
+            <input name="content" th:value="${comment.content}">
         </label>
     </div>
 
