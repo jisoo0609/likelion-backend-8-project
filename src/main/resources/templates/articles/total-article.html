@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Total Article</title>
+</head>
+<body>
+<h1>전체 게시판</h1>
+
+<!-- 서치 기능 추가 -->
+<form action="/boards/search" method="get" id="search-input" name="search">
+    <label>
+        <select name="type" class="type-box">
+            <option value="title">제목</option>
+            <option value="content">내용</option>
+        </select>
+    </label>
+    <div class="search-input">
+        <input class="inputId" type="text" name="keyword" placeholder="검색어 입력" th:value="${param.keyword}">
+    </div>
+    <div class="search-btn">
+        <a href="/boards/search">
+            <input class="submitBtn" type="submit" value="검색하기">
+        </a>
+    </div>
+</form>
+
+<hr>
+<!-- 게시글이 없을 경우 -->
+<div th:if="${articles.isEmpty()}">
+    <p>게시글이 없습니다.</p>
+</div>
+
+<!-- 게시글이 있는 경우 -->
+<div th:unless="${articles.isEmpty()}" th:each="article : ${articles}">
+    <a th:href="@{/article/{articleId}(articleId=${article.id})}">[[${article.title}]]</a>
+</div>
+
+<hr>
+<!-- 메인(게시판 리스트)으로 돌아가는 링크 -->
+<a href="/boards">Back</a>
+
+</body>
+</html>
