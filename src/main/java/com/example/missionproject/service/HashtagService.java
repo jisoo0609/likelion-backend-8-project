@@ -1,7 +1,6 @@
 package com.example.missionproject.service;
 
 import com.example.missionproject.entity.Hashtag;
-import com.example.missionproject.repository.ArticleHashtagRepository;
 import com.example.missionproject.repository.HashtagRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
