@@ -73,10 +73,10 @@ public class BoardService {
 
             if ("title".equals(type)) {
                 // 제목으로 검색
-                return articleRepository.findByTitleContaining(keyword);
+                return articleRepository.findByBoardAndTitleContaining(board, keyword);
             } else if ("content".equals(type)) {
                 // 내용으로 검색
-                return articleRepository.findByContentContaining(keyword);
+                return articleRepository.findByBoardAndContentContaining(board, keyword);
             }
         }
         return Collections.emptyList();
