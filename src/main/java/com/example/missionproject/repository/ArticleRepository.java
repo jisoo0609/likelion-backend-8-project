@@ -1,7 +1,6 @@
 package com.example.missionproject.repository;
 
 import com.example.missionproject.entity.Article;
-import com.example.missionproject.entity.Board;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

@@ -1,17 +1,15 @@
 package com.example.missionproject.service;
 
 import com.example.missionproject.entity.Article;
-import com.example.missionproject.entity.ArticleHashtag;
 import com.example.missionproject.entity.Board;
-import com.example.missionproject.entity.Hashtag;
-import com.example.missionproject.repository.ArticleHashtagRepository;
 import com.example.missionproject.repository.ArticleRepository;
 import com.example.missionproject.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -58,8 +56,10 @@ public class BoardService {
     // 게시판 전체 검색 기능
     public List<Article> searchAllBoards(String type, String keyword) {
         if ("title".equals(type)) {
+            // 제목으로 검색
             return articleRepository.findByTitleContaining(keyword);
         } else if ("content".equals(type)) {
+            // 내용으로 검색
             return articleRepository.findByContentContaining(keyword);
         }
         return Collections.emptyList();

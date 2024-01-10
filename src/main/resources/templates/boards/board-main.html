@@ -28,7 +28,9 @@
 <hr>
 
 <div th:each="board : ${boards}">
-    <h2><a th:href="@{/boards/{boardId}(boardId=${board.id})}">[[${board.name}]]</a></h2>
+    <h2>
+        <a th:href="@{/boards/{boardId}(boardId=${board.id})}">[[${board.name}]]</a>
+    </h2>
 </div>
 </body>
 </html>

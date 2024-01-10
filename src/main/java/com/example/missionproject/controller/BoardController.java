@@ -2,7 +2,6 @@ package com.example.missionproject.controller;
 
 
 import com.example.missionproject.entity.Article;
-import com.example.missionproject.entity.ArticleHashtag;
 import com.example.missionproject.entity.Board;
 import com.example.missionproject.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +25,7 @@ public class BoardController {
     public String boardList(Model model) {
         List<Board> boards = boardService.readAllBoard();
         model.addAttribute("boards", boards);
-        return "boards/board-list";
+        return "boards/board-main";
     }
 
     // 각 게시판에 저장되어있는 게시글 불러옴
@@ -35,6 +34,7 @@ public class BoardController {
         Board board = boardService.getBoardById(id);
 
         // 정렬된 게시글 리스트를 생성
+        // 마지막에 작성된 게시글이 최상단에 위치할 수 있도록 함
         List<Article> sortedArticles = board.getArticles().stream()
                 .sorted(Comparator.comparing(Article::getId).reversed())
                 .collect(Collectors.toList());
