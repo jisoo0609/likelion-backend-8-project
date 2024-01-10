@@ -9,12 +9,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("article")
 public class ArticleController {
     private final ArticleService articleService;
+
+    // 전체 게시글 보기
+    @GetMapping("/totalArticle")
+    public String totalArticle(Model model) {
+        List<Article> articles = articleService.getAllArticle();
+        model.addAttribute("articles", articles);
+        return "articles/total-article";
+    }
 
     // 게시글 상세보기
     @GetMapping("{articleId}")

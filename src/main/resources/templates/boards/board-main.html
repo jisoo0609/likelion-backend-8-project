@@ -27,6 +27,11 @@
 </form>
 <hr>
 
+<div>
+    <h2>
+        <a href="article/totalArticle">전체 게시판</a>
+    </h2>
+
 <div th:each="board : ${boards}">
     <h2>
         <a th:href="@{/boards/{boardId}(boardId=${board.id})}">[[${board.name}]]</a>

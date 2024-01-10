@@ -15,7 +15,6 @@
 <!-- 서치 기능 -->
 <form th:action="@{/boards/{boardId}/search(boardId=${board.id})}" method="get" id="search-input" name="search">
     <input type="hidden" name="boardId" th:value="${board.id}">
-
     <label>
         <select name="type" class="type-box">
             <option value="title">제목</option>

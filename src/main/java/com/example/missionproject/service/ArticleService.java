@@ -5,12 +5,18 @@ import com.example.missionproject.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class ArticleService {
     private final ArticleRepository articleRepository;
+
+    // 전체 게시글 불러오기
+    public List<Article> getAllArticle() {
+        return articleRepository.findAll();
+    }
 
     // 게시글 클릭하면 상세 게시글 보여줌
     public Article readArticle(Long id) {
