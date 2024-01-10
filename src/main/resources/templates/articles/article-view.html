@@ -19,11 +19,11 @@
 <br>
 
 <!-- 해시태그 보여주기 -->
-<div th:if="${article.hashtags.isEmpty()}">
+<div th:if="${article.articleHashtags.isEmpty()}">
     <p>태그가 없습니다.</p>
 </div>
 
-<div th:unless="${article.hashtags.isEmpty()}" th:each="tag : ${article.hashtags}">
+<div th:unless="${article.articleHashtags.isEmpty()}" th:each="tag : ${article.articleHashtags}">
     [[${tag.hashtag}]]
 </div>
 <hr>

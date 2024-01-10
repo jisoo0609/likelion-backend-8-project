@@ -6,7 +6,7 @@ import lombok.Setter;
 
 import java.util.List;
 
-// 게시글
+// 게시판
 @Entity
 @Getter
 @Setter

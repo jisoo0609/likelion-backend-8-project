@@ -4,9 +4,10 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
-// 게시판
+// 게시글
 @Entity
 @Getter
 @Setter
@@ -28,4 +29,8 @@ public class Article {
     // 하나의 게시글은 여러 댓글을 가짐
     @OneToMany(mappedBy = "article")
     private List<Comment> comments;
+
+    // 해시태그와 게시글 다대 다 관계
+    @OneToMany(mappedBy = "article")
+    private List<ArticleHashtag> articleHashtags = new ArrayList<>();
 }

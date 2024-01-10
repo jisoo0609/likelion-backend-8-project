@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,6 +17,6 @@ public class Hashtag {
     private String hashtag;
 
     // 해시태그와 게시글 다대 다 관계
-    @ManyToMany(mappedBy = "hashtags")
-    private List<Article> articles;
+    @OneToMany(mappedBy = "hashtag")
+    private List<ArticleHashtag> articleHashtags = new ArrayList<>();
 }

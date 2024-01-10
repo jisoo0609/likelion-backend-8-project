@@ -2,6 +2,7 @@ package com.example.missionproject.controller;
 
 
 import com.example.missionproject.entity.Article;
+import com.example.missionproject.entity.ArticleHashtag;
 import com.example.missionproject.entity.Board;
 import com.example.missionproject.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -61,10 +62,9 @@ public class BoardController {
                          @RequestParam("content") String content,
                          @RequestParam("author") String author,
                          @RequestParam("password") String password,
-                         @RequestParam("boardId") Long boardId,
-                         @RequestParam("hashtags") String hashtags
+                         @RequestParam("boardId") Long boardId
     ) {
-        boardService.create(title, content, author, password, boardId,hashtags);
+        boardService.create(title, content, author, password, boardId);
         return String.format("redirect:/boards/%d", boardId);
     }
 
