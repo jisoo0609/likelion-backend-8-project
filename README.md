@@ -110,7 +110,7 @@ public interface BoardRepository extends JpaRepository <Board, Long> {}
 
 - 게시글 저장
 - 여러 개시글이 하나의 게시판 주제를 가짐 → `@ManyToOne`
-- 하나의 게시글은 여러 댓글 가짐 → `@OneToMa`
+- 하나의 게시글은 여러 댓글 가짐 → `@OneToMany`
 - 해시태그 추가 중
 
 ### Entity
