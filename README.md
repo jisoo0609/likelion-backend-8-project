@@ -42,7 +42,10 @@
 
 ### 6. 코드 가독성이 떨어진다.
 - 프로젝트를 구현하기 시작한 초반에는 코드가 많지 않아 그리 복잡하지 않았지만, 현재는 코드의 양이 많아져 로직 하나를 확인하는 데도 어려움이 많다.
-- 이를 보하기 위해 코드의 리팩토링이 필수적으로 느껴진다.
+- 코드가 분산되어 있어, 코드의 확인이 쉽지 않다.
+  - 후반에 추가된 몇몇 기능은, 코드가 여러 클래스에 걸쳐 작성되어 있다.
+  - 프로그램의 실행에는 문제가 없지만, 코드 가독성이 떨어지는 원인이 된다.
+- 이를 보완하기 위해 코드의 리팩토링이 필수적으로 느껴진다.
 
 ### 7. 추가 과제인 해시태그 구현 과정에서 Entity 관계 설정에 어려움이 있었다.
 - Hashtag와 Article은 하나의 해시태그도 여러 게시글을 가지고, 하나의 게시글도 여러 해시태그를 가질 수 있는 다대 다(N:M) 관계였다.
@@ -329,6 +332,10 @@ spring:
 <!-- 메인(게시판 리스트)으로 돌아가는 링크 -->
 <a href="/boards">Back</a>
 ```
+- articles/total-article.html
+  - /boards 에서 전체 게시판 링크를 클릭했을 때 전체 게시판의 전체 게시글을 확인할 수 있는 페이지로 이동한다.
+  - 이때 보여지는 페이지가 된다.
+  - 해당 페이지는 전체 게시글을 불러온다. 
 
 ### Service
 
@@ -346,7 +353,14 @@ public Board getBoardById(Long boardId) {
     return boardRepository.findById(boardId).orElse(null);
 }
 ```
-
+- ArticleServivce.java
+  - 전체 게시글을 불러오기 위한 `getAllArticle()` 을 만든다.
+```java
+// 전체 게시글 불러오기
+public List<Article> getAllArticle() {
+    return articleRepository.findAll();
+}
+```
 ### Controller
 
 - BoardController class는 `@RequestMapping("boards")` 를 사용하여 하위 항목들을 작성한다.
@@ -374,6 +388,17 @@ public String boardDetails(@PathVariable("boardId") Long id, Model model) {
     model.addAttribute("board", board);
     model.addAttribute("sortedArticles", sortedArticles);
     return "boards/board-details";
+}
+```
+- ArticleController.java
+  - /boards 에서 전체 게시판을 클릭했을 때, 전체 게시글을 보여주는 페이지로 연결한다.
+```java
+// 전체 게시글 보기
+@GetMapping("/totalArticle")
+public String totalArticle(Model model) {
+    List<Article> articles = articleService.getAllArticle();
+    model.addAttribute("articles", articles);
+    return "articles/total-article";
 }
 ```
 ### 엔드포인트
