@@ -333,7 +333,7 @@ spring:
 <a href="/boards">Back</a>
 ```
 - articles/total-article.html
-  - /boards 에서 전체 게시판 링크를 클릭했을 때 전체 게시판의 전체 게시글을 확인할 수 있는 페이지로 이동한다.
+  - `/boards` 에서 전체 게시판 링크를 클릭했을 때 전체 게시판의 전체 게시글을 확인할 수 있는 페이지로 이동한다.
   - 이때 보여지는 페이지가 된다.
   - 해당 페이지는 전체 게시글을 불러온다. 
 
@@ -364,7 +364,7 @@ public List<Article> getAllArticle() {
 ### Controller
 
 - BoardController class는 `@RequestMapping("boards")` 를 사용하여 하위 항목들을 작성한다.
-- /boards를 실행하면 게시판 목록이 보여지는 `boardList()` 를 만든다.
+- `/boards`를 실행하면 게시판 목록이 보여지는 `boardList()` 를 만든다.
 - BoardController.java
 
 ```java
@@ -378,7 +378,7 @@ public String boardList(Model model) {
 }
 ```
 
-- /boards 에서 게시판 이름을 클릭했을 때 연결되는 페이지에서 게시글을 불러올 수 있도록 `boardDetails()` 을 만든다.
+- `/boards` 에서 게시판 이름을 클릭했을 때 연결되는 페이지에서 게시글을 불러올 수 있도록 `boardDetails()` 을 만든다.
 
 ```java
 // 각 게시판에 저장되어있는 게시글 불러옴
@@ -419,7 +419,7 @@ public String totalArticle(Model model) {
 ## 게시글을 작성할 수 있다
 ### HTML
 
-- /boards 에서 게시글을 작성하거나, /boards/{boardId} 에서 게시글 작성하기 버튼을 클릭하면 /boards/{boardId}/article  페이지로 연결되어 게시글을 생성할 수 있는 화면이 나타난다.
+- `/boards` 에서 게시글을 작성하거나, `/boards/{boardId}` 에서 게시글 작성하기 버튼을 클릭하면 `/boards/{boardId}/article`  페이지로 연결되어 게시글을 생성할 수 있는 화면이 나타난다.
 - boards/create-view.html
     - `th:action` 을 사용해 게시글 작성 후 게시글 작성 버튼을 클릭하면 form이 전송된다.
     - `option` 을 사용해 게시글을 작성할 게시판을 선택할 수 있다.
@@ -493,7 +493,7 @@ public void create(
 
 ### Controller
 
-- /{boardId}/article 을 실행했을 때, 게시글을 생성할 수 있는 화면이 보여지는 `createView()` 와 해당 페이지에서 작성된 게시글을 저장할 수 있는 `create()` 를 만든다
+- `/{boardId}/article` 을 실행했을 때, 게시글을 생성할 수 있는 화면이 보여지는 `createView()` 와 해당 페이지에서 작성된 게시글을 저장할 수 있는 `create()` 를 만든다
 - BoardController.java
     - `createView()` 는 단순히 화면이 보여지는 역할만 하기 때문에 `@GetMapping` 을 사용한다.
     - `create()` 는 게시글이 저장되어야 하기 때문에 `@PostMapping` 을 사용한다.
@@ -591,7 +591,7 @@ public String readArticle(@PathVariable("articleId") Long id, Model model) {
 --- 
 
 ## 게시글을 수정하는 페이지
-- /articles/update.html
+- `/articles/update.html`
     - 게시글을 수정할 수 있는 html 페이지가 필요하다.
     - 수정될 게시글의 데이터는 비밀번호를 제외하고, 입력 칸의 화면에 존재한다.
         - 기본 구조는 유사하지만 input에 `th:value` 을 사용해 기존의 게시글 내용을 불러와 수정이 가능하게 한다.
@@ -614,7 +614,7 @@ public String readArticle(@PathVariable("articleId") Long id, Model model) {
 
 ### Service
 
-- ArticleService.java
+- `ArticleService.java`
     - 게시글 수정하기 위해 비밀번호를 확인하는 메서드인 `isPasswordCorrect()` 가 필요하다.
     - `update()` 로 내용을 업데이트하기 위한 메서드를 만든다.
 
@@ -766,10 +766,10 @@ public String deleteArticle(@PathVariable("articleId") Long id,
 
 ### HTML
 
-- /article/{articleId}/comment  페이지로 연결되어 게시글을 생성할 수 있는 화면이 나타난다.
-- /comments/create.html
-    - 게시글 작성하는 /articles/create.html 과 유사한 형태이다.
-- /articles/article-view.html
+- `/article/{articleId}/comment`  페이지로 연결되어 게시글을 생성할 수 있는 화면이 나타난다.
+- `/comments/create.html`
+    - 게시글 작성하는 `/articles/create.html` 과 유사한 형태이다.
+- `/articles/article-view.html`
     - 댓글을 작성하기 위한 댓글 작성하기 버튼과 작성된 댓글이 차례로 보여지게 하는 html 문을 추가한다.
 
 ### Service
@@ -995,8 +995,8 @@ public List<Article> searchArticles(Long boardId, String type, String keyword) {
 
 - BoardController.java
     - 검색된 게시글이 보여지는 페이지로 연결되는 메서드를 만든다.
-    - 게시판 전체에서 검색한 게시글인 경우는 /boards/search 페이지로 연결된다.
-    - 특정 게시판 내에서 검색한 게시글인 경우는 /boards/{boardId}/search 페이지로 연결된다.
+    - 게시판 전체에서 검색한 게시글인 경우는 `/boards/search` 페이지로 연결된다.
+    - 특정 게시판 내에서 검색한 게시글인 경우는 `/boards/{boardId}/search` 페이지로 연결된다.
 
 ```java
 // 게시판 전체에서 게시글 검색하기
